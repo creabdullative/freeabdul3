@@ -1,0 +1,54 @@
+<div id="header-search" class="col-12 col-lg-4 offset-lg-1 order-2 order-lg-0 mt-1 mt-lg-0">
+<form action="/arama" method="get" autocomplete="off" id="search" class="w-100 position-relative">
+<input id="live-search" type="search" name="q" placeholder="Aradığınız ürün, kategori veya markayı yazınız." class="form-control form-control-md"
+data-search="live-search" v-model="searchVal" data-licence="1">
+<button type="submit" class="btn btn-dark" id="live-search-btn">Ara</button>
+<div class="p-1 pb-0 bg-white border border-round search-form-list" id="dynamic-search-167" v-if="searchVal.length > 0 && data != ''" v-cloak>
+<div class="row dynamic-search">
+<div class="col-12 col-sm dynamic-search-item mb-1" v-if="data.products.length > 0">
+<div class="block-title border-bottom border-light">Ürünler</div>
+<ul>
+<li v-for="P in data.products">
+<a :href="'/' + P.url">
+<span class="search-image" v-if="P.image"><img :src="P.image" :alt="P.title"></span>
+{{ P.title }}
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm dynamic-search-item mb-1" v-if="data.categories.length > 0">
+<div class="block-title border-bottom border-light">Kategoriler</div>
+<ul>
+<li v-for="C in data.categories">
+<a :href="'/' + C.url">
+<span class="search-image" v-if="C.image"><img :src="C.image" :alt="C.title"></span>
+{{ C.title }}
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm dynamic-search-item mb-1" v-if="data.brands.length > 0">
+<div class="block-title border-bottom border-light">Markalar</div>
+<ul>
+<li v-for="B in data.brands">
+<a :href="'/' + B.url">
+<span class="search-image" v-if="B.image"><img :src="B.image" :alt="B.title"></span>
+{{ B.title }}
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm dynamic-search-item" v-if="data.combines.length > 0">
+<div class="block-title border-bottom border-light">Kombinler</div>
+<ul>
+<li v-for="C in data.combines">
+<a :href="'/' + C.url">
+<span class="search-image" v-if="C.image"><img :src="C.image" :alt="C.title"></span>
+{{ C.title }}
+</a>
+</li>
+</ul>
+</div>
+<div class="dynamic-search-item px-1 mb-1" v-if="data.products.length < 1 && data.categories.length < 1 && data.brands.length < 1 && data.combines.length < 1">
+Sonuç bulunamadı.
+</div>
